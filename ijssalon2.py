@@ -27,7 +27,7 @@ def bestellen():
         print("Sorry, dat snap ik niet...")
         ijssalon+0
 
-print("Welkom bij Papi Gelato je mag alle smaken kiezen zolang het maar vanille ijs is.")
+print("Welkom bij Papi Gelato. ")
 while ijssalon == 1:
     bol = int(input("Hoeveel bolletjes ijs wilt u? : "))
     while bol >8:
