@@ -2,13 +2,15 @@ import os
 import sys
 ijssalon = 1
 bak = 1
+qtybakje = 0
+qtyhoorn = 0
 def bestellen():
     bestellen = input("Hier is uw "+ deel +" met " + str(bol)+ " bolletje(s). Wilt u nog meer bestellen? (Y/N)")
     if bestellen == "y":
         ijssalon+0
     elif bestellen == "n":
         print("Bedankt en tot ziens.")
-        sys.exit()
+        print(qtybakje)
         
     else:
         print("Sorry, dat snap ik niet...")
@@ -24,14 +26,18 @@ while ijssalon == 1:
             hoorntje = str(input("Wilt u deze " + str(bol) + " bolletje(s) in A) een hoorntje of B) een bakje? : ")).lower()
             if hoorntje == "a":
                 deel = "hoorntje"
+                qtyhoorn += 1
                 bestellen()
             elif hoorntje == "b":
                 deel = "bakje"
+                qtybakje += 1 
                 bestellen()
+
             else:
                 print("Sorry, dat snap ik niet")
     elif bol >=4 and bol <=8:
         deel = "bakje"
+        qtybakje += 1 
         bestellen()
     else:
         print("Sorry, ik snap het niet...")
