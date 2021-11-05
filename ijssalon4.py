@@ -1,7 +1,7 @@
 import os
 import sys
 ijssalon = 1
-weetniet ="Sorry, ik snap het niet..."
+weetniet ="Sorry dat is geen optie die we aanbieden..."
 bakgeld = 0
 hoorngeld = 0
 bakjeaantal = 0
@@ -14,17 +14,16 @@ topkost = 0
 toptotal = 0
 totalkost = 0
 aantalL = 0
+
 #3
 def smaken():
     global smaak
     for x in range(aantalbol or liters, 0 , -1):
-        smaak = str(input("Welke smaak wilt u voor "+ str(welk) + " "+ str(x) +" A) Aardbei, C) Chocolade, M) Munt of V) Vanille?  ")).lower()
+        smaak = str(input("Welke smaak wilt u voor "+ str(welk) + " "+ str(x) +" A) Aardbei, C) Chocolade of V) Vanille?  ")).lower()
         if smaak == "a":
             smaak= "Aarbei"
         elif smaak == "c":
             smaak= "Chocolade"
-        elif smaak == "m":
-            smaak= "Munt"
         elif smaak == "v":
             smaak= "Vanille"
         else:
@@ -87,8 +86,8 @@ def bestellen():
         print("hoorntje  ", hoornaantal," x 1,25 = ",float(hoorntotal))
 
         total = "{:.2f}".format(round(float(bollen)*1.1 , 2))
-        print("bolletjes", bollen ,"x 1.10 =   ", total)
-        totalkost += bollen * 1.10
+        print("bolletjes", bollen ,"x 0.95 =   ", total)
+        totalkost += bollen * 0.95
 
         print("                        -------- +")
         print("total               =","{:.2f}".format(round(float(totalkost), 2)))
@@ -136,12 +135,12 @@ def twee():
 #6
 def zaakbon():
     aantalL = liters * 9.80
-    procenten = aantalL/100 *9
+    procenten = aantalL/100 *6
     print('---------["Papi Gelato]---------')
     print(liters, "x 9.80               =", "{:.2f}".format(round(float(aantalL), 2)))
     print("                        -------- +")
     print("total                  =","{:.2f}".format(round(float(aantalL), 2)))
-    print ("btw 9%                 =", "{:.2f}".format(round(float(procenten), 2)))
+    print ("btw 6%                 =", "{:.2f}".format(round(float(procenten), 2)))
     print("Bedankt en tot ziens.")
     print("--------------------------------")
     sys.exit()
