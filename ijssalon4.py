@@ -2,28 +2,23 @@ import os
 import sys
 ijssalon = 1
 weetniet ="Sorry, ik snap het niet..."
-bak = 0
 bakgeld = 0
 hoorngeld = 0
 bakjeaantal = 0
 hoornaantal = 0
-bakje = 0
 hoorntotal= 0 
 bakjetotal = 0
 aantalbol = 0
 bollen = 0
 topkost = 0
-sprinkle = 0
-sauze = 0
 toptotal = 0
 totalkost = 0
-
-
-#2
+aantalL = 0
+#3
 def smaken():
     global smaak
-    for x in range(aantalbol, 0 , -1):
-        smaak = str(input("Welke smaak wilt u voor bolletje "+ str(x) +" A) Aardbei, C) Chocolade, M) Munt of V) Vanille?  ")).lower()
+    for x in range(aantalbol or liters, 0 , -1):
+        smaak = str(input("Welke smaak wilt u voor "+ str(welk) + " "+ str(x) +" A) Aardbei, C) Chocolade, M) Munt of V) Vanille?  ")).lower()
         if smaak == "a":
             smaak= "Aarbei"
         elif smaak == "c":
@@ -34,9 +29,10 @@ def smaken():
             smaak= "Vanille"
         else:
             print(weetniet)
+            smaken()
 
 
-#3
+#4
 def topping():
     global topkost
     print("wilt u er nog een topping bij?")
@@ -58,20 +54,21 @@ def topping():
         print()
     else:
         print(weetniet)
+        topping()
     bestellen()
 
 
 
-#4
+#5
 def bestellen():
     global bakjetotal ,bakjeaantal ,hoornaantal ,hoorntotal, bollen, toptotal, totalkost
-    bestellen = input("Hier is uw "+ deel+ " " + smaak +" met " + str(aantalbol)+ " bolletje(s). Wilt u nog meer bestellen? (Y/N)").lower()
+    bestellen = input("Hier is uw "+ deel+ " met " + str(aantalbol)+ " bolletje(s). Wilt u nog meer bestellen? (Y/N)").lower()
     if bestellen == "y":
         bakjetotal += bakgeld
         hoorntotal += hoorngeld
         bollen += aantalbol
         toptotal += topkost
-        begin()
+        twee()
     elif bestellen == "n":
         bakjetotal += bakgeld
         hoorntotal += hoorngeld
@@ -80,22 +77,21 @@ def bestellen():
         totalkost += toptotal
         totalkost += bakjetotal
         totalkost += hoorntotal        
-        print('---------["Papi Gelato]---------')
-        hoorntotal= "{:.2f}".format(round(float(hoorngeld)*1 , 2))
-        bakjetotal= "{:.2f}".format(round(float(bakgeld)*1 , 2))
-        toptotal = "{:.2f}".format(round(float(topkost)*1 , 2))
+        print('---------[Papi Gelato]---------')
+        hoorntotal= "{:.2f}".format(round(float(hoorngeld), 2))
+        bakjetotal= "{:.2f}".format(round(float(bakgeld), 2))
+        toptotal = "{:.2f}".format(round(float(topkost), 2))
 
-        print("toppings  1 x",toptotal,"= ",toptotal)
-        print("bakje     ", bakjeaantal," x 0,75 = ", float(bakjetotal))
+        print("toppings  1 x",toptotal,"=   ",toptotal)
+        print("bakje     ", bakjeaantal," x 0,75 = ", "{:.2f}".format(round(float(bakjetotal), 2)))
         print("hoorntje  ", hoornaantal," x 1,25 = ",float(hoorntotal))
 
         total = "{:.2f}".format(round(float(bollen)*1.1 , 2))
-        print("bolletjes", bollen ,"x 1.10 =", total)
+        print("bolletjes", bollen ,"x 1.10 =   ", total)
         totalkost += bollen * 1.10
-        totalkost = "{:.2f}".format(round(float(totalkost)*1 , 2))  
 
-        print("--------------------------------")
-        print("total               =",float(totalkost))
+        print("                        -------- +")
+        print("total               =","{:.2f}".format(round(float(totalkost), 2)))
         print("Bedankt en tot ziens.")
         print("--------------------------------")
         sys.exit()
@@ -103,11 +99,11 @@ def bestellen():
         print(weetniet)
         ijssalon+0
 
-#1
+#2
 print("Welkom bij Papi Gelato. ")
-def begin():
+def twee():
 
-    global hoornaantal, hoorngeld, bakgeld ,bak, bakjeaantal , bakje, deel, aantalbol
+    global hoornaantal, hoorngeld, bakgeld , bakjeaantal ,deel, aantalbol
     while ijssalon == 1:
         aantalbol = int(input("Hoeveel bolletjes ijs wilt u? : "))
         if aantalbol >8:
@@ -136,6 +132,38 @@ def begin():
             smaken()
             topping()
         else:
+            print(weetniet) 
+#6
+def zaakbon():
+    aantalL = liters * 9.80
+    procenten = aantalL/100 *9
+    print('---------["Papi Gelato]---------')
+    print(liters, "x 9.80               =", "{:.2f}".format(round(float(aantalL), 2)))
+    print("                        -------- +")
+    print("total                  =","{:.2f}".format(round(float(aantalL), 2)))
+    print ("btw 9%                 =", "{:.2f}".format(round(float(procenten), 2)))
+    print("Bedankt en tot ziens.")
+    print("--------------------------------")
+    sys.exit()
+#1
+def begin():
+    global liters, soort, welk
+    vraag = input("Bent u 1) particulier of 2) zakelijk? 1 of 2 : ")
+    
+    if vraag == "1":
+        welk = "bolletje(s)"
+        twee()
+    
+    elif vraag == "2":
+        welk = "liter"
+        liters = int(input("hoeveel liters wilt u? "))
+        if liters > 0:
+            smaken()
+            zaakbon()
+        else:
             print(weetniet)
-
+            begin()
+    else:
+        print(weetniet)
+        begin()
 begin()
